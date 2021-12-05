@@ -1,1 +1,2 @@
-"# adventOfCode2021" 
+# adventOfCode2021
+learning python!
