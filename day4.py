@@ -1,63 +1,55 @@
-def giantSquidP1(draw:list,matrices:list):
-    # find which draw makes first bingo, and which matrix bingo
-    bingostop, bingomatrix = findBingo(draw, matrices)
-    print(findFinalScore(draw, matrices, bingostop, bingomatrix))
-
-def giantSquidP2(draw:list,matrices:list):
-    bingostop, bingomatrix = findLastBingo(draw, matrices)
-    print(findFinalScore(draw, matrices, bingostop, bingomatrix))
-
-def findFinalScore(draw:list, matrices:list, bingostop:int, bingomatrix:int) -> int:
-    # convert all called draw into lookup set
-    index = draw.index(str(bingostop))
-    drawSet = set(draw[:index])
+def findFinalScore(draw: list, matrices: list, bingoStop: int, bingoMatrix: int) -> int:
+    # convert all called draw into lookup set, since it is a str set, need to cast int to str when checking
+    index = draw.index(str(bingoStop))
+    drawSet = set(draw[:index+1])
     # find sum of non selected numbers in the bingo matrix
     sum = 0
-    for i in matrices[bingomatrix * 5:bingomatrix * 5 + 5]:
+    for i in matrices[bingoMatrix * 5:bingoMatrix * 5 + 5]:
         for j in i:
             if str(j) not in drawSet:
                 sum += j
-    # the bingostop number needs to be removed
-    return (sum-bingostop)*bingostop
+    return sum * bingoStop
 
-def findBingo(draw: list, matrices: list) -> [int,int]:
-    numOfMat = len(matrices) / 5
-    bingo = [[0] * 10 for i in range(int(numOfMat))]
-    for s in draw:
-        for i in range(len(matrices)):
-            for j in range(len(matrices[0])):
-                if matrices[i][j] == int(s):
-                    n = int(i / 5)
-                    bingo[n][i - n * 5] += 1
-                    bingo[n][5 + j] += 1
-                    if bingo[n][i - n * 5] == 5 or bingo[n][5 + j] == 5:
-                        bingostop = int(s)
-                        bingomatrix = int(i / 5)
-                        return bingostop, bingomatrix
 
-def findLastBingo(draw: list, matrices: list) -> [int,int]:
-    bingocount = set([])
+def findFirstAndLastBingo(draw: list, matrices: list) -> [int, int,int, int]:
+    # return first/last bingo draw number (assume the draw has no duplicate) and matrix index
+    # keep a record of index of bingo matrix
+    bingoCount = set([])
     numOfMat = len(matrices) / 5
+    # first 5 for counting row, last 5 for counting col
     bingo = [[0] * 10 for i in range(int(numOfMat))]
+    firstBingoStop = 0
+    firstBingoMatrix = 0
     for s in draw:
+        # loop matrix index
         for i in range(len(matrices)):
-            for j in range(len(matrices[0])):
-                if matrices[i][j] == int(s):
-                    n = int(i / 5)
-                    bingo[n][i - n * 5] += 1
-                    bingo[n][5 + j] += 1
-                    if bingo[n][i - n * 5] == 5 or bingo[n][5 + j] == 5:
-                        bingocount.add(n)
-                        if len(bingocount) == numOfMat:
-                            bingostop = int(s)
-                            bingomatrix = int(i / 5)
-                            return bingostop, bingomatrix
+            # no need to check bingo matrix
+            curMat = int(i / 5)
+            if curMat not in bingoCount:
+                for j in range(len(matrices[0])):
+                    # matches draw, increase bingo count on row and col
+                    if matrices[i][j] == int(s):
+                        bingo[curMat][i - curMat * 5] += 1
+                        bingo[curMat][5 + j] += 1
+                        # if bingo, add matrix index to set, save first and last bingo
+                        if bingo[curMat][i - curMat * 5] == 5 or bingo[curMat][5 + j] == 5:
+                            bingoCount.add(curMat)
+                            if len(bingoCount) == 1:
+                                firstBingoStop = int(s)
+                                firstBingoMatrix = curMat
+                            if len(bingoCount) == numOfMat:
+                                lastBingoStop = int(s)
+                                lastBingoMatrix = curMat
+                                return firstBingoStop, firstBingoMatrix, lastBingoStop, lastBingoMatrix
 
 if __name__ == '__main__':
     with open("input4.txt") as f:
+        # not really the best parsing, probably should convert 'draw' from str to int list
         draw = f.readline().strip().split(',')
         from numpy import loadtxt
         input = f.readlines()
         matrices = loadtxt(input, dtype=int)
-    giantSquidP1(draw,matrices)
-    giantSquidP2(draw,matrices)
+        firstBingoStop, firstBingoMatrix, lastBingoStop, lastBingoMatrix = findFirstAndLastBingo(draw, matrices)
+        print(findFinalScore(draw, matrices, firstBingoStop, firstBingoMatrix))
+        print(findFinalScore(draw, matrices, lastBingoStop, lastBingoMatrix))
+
