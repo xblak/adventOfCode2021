@@ -1,7 +1,7 @@
 import numpy as np
 def naivesolution():
     from numpy import loadtxt
-    fishes = loadtxt("test.txt", dtype=int, delimiter=',')
+    fishes = loadtxt("input6.txt", dtype=int, delimiter=',')
     days = 80
     for _ in range(days):
         fishes -= 1
