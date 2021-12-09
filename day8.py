@@ -26,8 +26,8 @@
 # repeated: a,c=8, d,g=7
 
 # we know 1,4,7,8 simply by the length of the output
-# if len is 5,(2,3,5), check if any character have freq of e:4, f:9, b:6 corresponding to 2,3,5
-# since 3 and 5 share f, confirm f:9(3) last
+# if len is 5,(2,3,5), check if any character have freq of e:4, b:6 corresponding to 2,5
+# else confirm f:9(3) last
 # if len is 6 (0,6,9), check if there is one d,g:7, or one a,c:8, no e:4 corresponding to 0,6,9
 
 
@@ -58,22 +58,19 @@ def sumofall(patternlist, outlist):
                 num *= 10
                 num += 8
             # value 2 3 5, len 5
-            # e:4, f:9, b:6 corresponding to 2,3,5
-            # since 3 and 5 share f, confirm f:9(3) last
+            # e:4, b:6 corresponding to 2,5
+            # confirm 3 last
             if len(out) == 5:
                 num *= 10
                 n = 0
-                findf = False
                 for c in out:
                     if dict[c] == 4:
                         n = 2
                         break
-                    elif dict[c] == 9:
-                        findf = True
                     elif dict[c] == 6:
                         n = 5
                         break
-                if findf and n == 0:
+                if n == 0:
                     n = 3
                 num += n
             # value 0 6 9, len 6
