@@ -2,7 +2,7 @@
 # dict with all caves and it's connection (graph)
 # dfs(backtrack) all possible path, use a set to keep track of visited
 # return 0 if we found a dead end, return 1 if reach the end
-# no CAVE is connect to CAVE in input, so no infinite loop is possible
+# no CAVE is connect to CAVE in input, so infinite loop is impossible
 
 def dfs_start(caves, question):
     sum = 0
