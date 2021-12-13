@@ -18,7 +18,7 @@ def dfs_start(caves, question):
 
             # Edit: found the bug right after I wrote everything above
             # it removes the cave in visited without adding one
-            # in [a], add a, remove a, we still have [a], but it will be [] in set
+            # in [a], add a, remove a, we still have [a], but it will be {} in set
             # so it results in visiting a small cave three times
             # fixed by not removing the cave in visited when we use the 'twice pass'
             sum += dfs_helper2(caves, cave, set, True)
