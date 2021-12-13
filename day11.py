@@ -18,9 +18,7 @@ def one_step(matrix) -> int:
 
 def flashes(matrix, index):
     # flashes all > 9
-    for i in range(len(index[0])):
-        x = index[0][i]
-        y = index[1][i]
+    for x, y in zip(index[0], index[1]):
         matrix[x][y] = 0
         for i in range(x - 1, x + 2):
             for j in range(y - 1, y + 2):

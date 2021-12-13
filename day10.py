@@ -18,7 +18,7 @@ def find_invalid_or_complete(line):
     stack = []
     dict = {'(': ')', '[': ']', '{': '}', '<': '>'}
     for c in line:
-        if c in [')', ']', '}', '>']:
+        if c in set(')]}>'):
             if c != stack.pop():
                 return c
         else:
