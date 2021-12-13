@@ -1,5 +1,5 @@
 def binaryDiagP1():
-    with open("input3.txt") as f:
+    with open("input03.txt") as f:
         sum = []
         half = 0
         for line in f:
@@ -22,7 +22,7 @@ def binaryDiagP1():
         print(powerCons)
 
 def binaryDiagP2():
-    with open("input3.txt") as f:
+    with open("input03.txt") as f:
         numstring = []
         for line in f:
             numstring.append(line.strip())

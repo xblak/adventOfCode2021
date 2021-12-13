@@ -1,6 +1,6 @@
 def SonarSweepP1():
     from numpy import loadtxt
-    input = loadtxt("input1.txt")
+    input = loadtxt("input01.txt")
     counter = 0
     for i in range(1, len(input)):
         if input[i - 1] < input[i]:
@@ -10,7 +10,7 @@ def SonarSweepP1():
 
 def SonarSweepP2():
     from numpy import loadtxt
-    input = loadtxt("input1.txt")
+    input = loadtxt("input01.txt")
     counter = 0
     for i in range(3, len(input)):
         if input[i - 3] < input[i]:

@@ -43,7 +43,7 @@ def findFirstAndLastBingo(draw: list, matrices: list) -> [int, int,int, int]:
                                 return firstBingoStop, firstBingoMatrix, lastBingoStop, lastBingoMatrix
 
 if __name__ == '__main__':
-    with open("input4.txt") as f:
+    with open("input04.txt") as f:
         # not really the best parsing, probably should convert 'draw' from str to int list
         draw = f.readline().strip().split(',')
         from numpy import loadtxt

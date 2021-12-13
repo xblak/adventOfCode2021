@@ -1,7 +1,7 @@
 import numpy as np
 def naivesolution():
     from numpy import loadtxt
-    fishes = loadtxt("input6.txt", dtype=int, delimiter=',')
+    fishes = loadtxt("input06.txt", dtype=int, delimiter=',')
     days = 80
     for _ in range(days):
         fishes -= 1
@@ -33,7 +33,7 @@ def countfish(map):
 
 if __name__ == '__main__':
     # naivesolution()
-    with open("input6.txt") as f:
+    with open("input06.txt") as f:
         fishes = f.readline().strip().split(',')
         map = [0] * 9
         for fish in fishes:

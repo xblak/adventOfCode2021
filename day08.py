@@ -100,7 +100,7 @@ def sumofall(patternlist, outlist):
 
 
 if __name__ == '__main__':
-    with open("input8.txt") as f:
+    with open("input08.txt") as f:
         patternlist = []
         outlist = []
         for line in f:

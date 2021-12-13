@@ -39,7 +39,7 @@ def drawLineP2(map:dict, x1:int, y1:int, x2:int, y2:int):
         map.update({key: map.get(key, 0) + 1})
 
 if __name__ == '__main__':
-    with open("input5.txt") as f:
+    with open("input05.txt") as f:
         map = {}
         count = 0
         for line in f:
@@ -50,7 +50,7 @@ if __name__ == '__main__':
                 count += 1
         print(count,len(map))
 
-    with open("input5.txt") as f:
+    with open("input05.txt") as f:
         # probably don't need to iterate the file twice
         # one potential solution is use two dicts,
         # one dict for straight line only, the other one for both

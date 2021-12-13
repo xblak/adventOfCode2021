@@ -6,7 +6,7 @@ def getrealfuel(steps):
 
 if __name__ == '__main__':
     from numpy import loadtxt
-    arr = loadtxt('input7.txt', dtype=int, delimiter=',')
+    arr = loadtxt('input07.txt', dtype=int, delimiter=',')
     # get a really big number for comparison
     least = float('inf')
     leastreal = float('inf')

@@ -1,7 +1,7 @@
 def diveP1():
     hori = 0
     depth = 0
-    with open("input2.txt") as f:
+    with open("input02.txt") as f:
         for line in f:
             a = line.rstrip().split()
             if a[0] == 'forward':
@@ -16,7 +16,7 @@ def diveP2():
     hori = 0
     aim = 0
     depth = 0
-    with open("input2.txt") as f:
+    with open("input02.txt") as f:
         for line in f:
             a = line.rstrip().split()
             if a[0] == 'forward':

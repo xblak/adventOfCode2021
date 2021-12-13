@@ -57,7 +57,7 @@ def getProdBasin(heightMap):
 
 
 if __name__ == '__main__':
-    with open("input9.txt") as f:
+    with open("input09.txt") as f:
         heightmap = []
         for line in f:
             heightmap.append(line.strip())
